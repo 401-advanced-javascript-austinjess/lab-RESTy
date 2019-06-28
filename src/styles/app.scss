@@ -3,4 +3,18 @@ html {
   font-family: 'Ubuntu', sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #272727;
+  color: white;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  width: 100vw;
+  display: flex;
+  margin: 30px 0;
+  padding: 20px;
 }
