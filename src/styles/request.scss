@@ -2,34 +2,80 @@
 
 .resty-request {
   color: white;
-  width: 60vw;
-  height: 70vh;
-  margin-left: 30px;
 
   form {
+    width: 65vw;
+    box-sizing: border-box;
+
     input[name='url'] {
-      height: 25px;
-      width: 80%;
+      height: 45px;
+      width: 100%;
       font-size: 1.1rem;
-      padding: 5px;
+      padding: 5px 10px;
+      display: block;
     }
 
-    input[type='submit'],
-    #submit {
-      margin-left: 40px;
-      height: 25px;
-      width: 100px;
+    div {
+      display: flex;
+      align-items: center;
+      margin: 30px 0;
+    }
+
+    input[type='submit'] {
+      display: inline-block;
+      margin: 0 0 0 15%;
+      height: 43px;
+      width: 95%;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      background-color: $primary-orange;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: bold;
+      letter-spacing: 1.2px;
+    }
+
+    input[type='submit']:hover {
+      color: $primary-blue;
+      background-color: white;
     }
 
     .methods {
-      margin-top: 20px;
-      display: inline-flex;
+      display: inline-block;
       max-width: 400px;
       letter-spacing: 1.2px;
       font-size: 1.1rem;
 
+      input {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+
+      input[type='radio']:checked ~ div {
+        color: $primary-blue;
+        background-color: white;
+      }
+
       label {
-        margin: 0 10px;
+        margin: 0 15px;
+        padding: 10px;
+        border: 1px solid $primary-orange;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      input[type='radio']:checked + label {
+        background-color: $primary-orange;
+      }
+
+      label:hover {
+        background-color: $primary-orange;
+      }
+
+      .list-start {
+        margin-left: 0;
       }
     }
   }

@@ -1,12 +1,18 @@
 import React from 'react';
-import ReactDom from 'react';
+import ReactDOM from 'react-dom';
+import superagent from 'superagent';
 
 import '../styles/request.scss';
 
 class Request extends React.Component {
-  doRequest = (e) => {
+  doRequest = async (e) => {
     e.preventDefault();
     let url = e.target.url.value;
+    let method = e.target.method.value;
+
+    let response = await superagent(method, url);
+    if (!response) throw Error();
+    this.props.onResponse(response);
   };
 
   render() {
@@ -14,23 +20,27 @@ class Request extends React.Component {
       <section className="resty-request">
         <form onSubmit={this.doRequest}>
           <input name="url" type="text" placeholder="https://example.com/api" />
-          <section className="methods">
-            <label htmlFor="get">GET</label>
-            <input hidden id="get" type="radio" />
+          <div>
+            <section className="methods">
+              <input value="get" id="get" name="method" type="radio" />
+              <label htmlFor="get" className="list-start">
+                GET
+              </label>
 
-            <label htmlFor="post">POST</label>
-            <input hidden id="post" type="radio" />
+              <input value="post" id="post" name="method" type="radio" />
+              <label htmlFor="post">POST</label>
 
-            <label htmlFor="put">PUT</label>
-            <input hidden id="put" type="radio" />
+              <input value="put" id="put" name="method" type="radio" />
+              <label htmlFor="put">PUT</label>
 
-            <label htmlFor="patch">PATCH</label>
-            <input hidden id="patch" type="radio" />
+              <input value="patch" id="patch" name="method" type="radio" />
+              <label htmlFor="patch">PATCH</label>
 
-            <label htmlFor="delete">DELETE</label>
-            <input hidden id="delete" type="radio" />
-          </section>
-          <input type="submit" value="GO" />
+              <input value="delete" id="delete" name="method" type="radio" />
+              <label htmlFor="delete">DELETE</label>
+            </section>
+            <input type="submit" value="SEND REQUEST" />
+          </div>
         </form>
       </section>
     );
