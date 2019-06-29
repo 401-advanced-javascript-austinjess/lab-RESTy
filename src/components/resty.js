@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 
 import History from './history';
 import Request from './request';
+import Response from './response';
 
 class Resty extends React.Component {
   state = {
-    response: null
+    response: null,
+    history: []
   };
 
   handleResponse = (response) => {
@@ -23,6 +25,7 @@ class Resty extends React.Component {
       <main>
         <History />
         <Request onResponse={this.handleResponse} />
+        <Response response={this.state.response} />
       </main>
     );
   }
