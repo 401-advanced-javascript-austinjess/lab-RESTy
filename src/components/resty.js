@@ -9,11 +9,20 @@ class Resty extends React.Component {
     response: null
   };
 
+  handleResponse = (response) => {
+    let filtered = Object.keys(response).filter(
+      (key) => key === 'header' || key === 'body'
+    );
+    response = filtered.map((key) => response[key]);
+
+    this.setState({ response });
+  };
+
   render() {
     return (
       <main>
         <History />
-        <Request />
+        <Request onResponse={this.handleResponse} />
       </main>
     );
   }

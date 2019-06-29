@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDom from 'react';
+import ReactDom from 'react-dom';
 
 import '../styles/history.scss';
 
