@@ -13,6 +13,12 @@ class Request extends React.Component {
     let url = e.target.url.value;
     let method = e.target.method.value;
 
+    if (method === 'post') {
+      let jsonBody = e.target.body.value;
+      let response = await superagent(method, url).send(jsonBody);
+      console.log(response);
+    }
+
     let response = await superagent(method, url);
     if (!response) throw Error();
     this.props.onResponse(response);
