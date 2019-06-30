@@ -16,7 +16,7 @@
       background-color: white;
     }
 
-    div {
+    .flex {
       display: flex;
       align-items: center;
       margin: 30px 0;
@@ -86,23 +86,31 @@
       display: flex;
 
       textarea {
-        width: 60%;
+        width: 50%;
         height: 150px;
       }
 
       .headers {
-        div {
-          margin: 0;
-        }
+        text-align: left;
 
         input {
           height: 25px;
           margin: 10px;
+          width: 40%;
         }
 
         .userpass {
+          display: inline-block;
           div {
-            display: block;
+            margin: 0;
+          }
+        }
+
+        .bearer {
+          // display: inline-block;
+
+          input {
+            width: 100%;
           }
         }
 

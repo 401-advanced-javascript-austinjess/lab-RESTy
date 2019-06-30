@@ -2,7 +2,7 @@ import React from 'react';
 
 const MethodsInput = (props) => {
   return (
-    <div>
+    <div className="flex">
       <section className="methods">
         <input value="get" id="get" name="method" type="radio" />
         <label htmlFor="get" className="list-start">

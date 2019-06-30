@@ -15,6 +15,8 @@ const Response = (props) => {
         collapsed={true}
         style={JsonStyle}
         theme={JsonTheme}
+        displayDataTypes={true}
+        displayObjectSize={true}
         src={props.response}
       />
     </section>
@@ -28,6 +30,8 @@ const NoResponseJson = () => {
         name={null}
         style={JsonStyle}
         theme={JsonTheme}
+        displayDataTypes={true}
+        displayObjectSize={true}
         src={{ '': 'Enter URL and Method to begin!' }}
       />
     </section>
