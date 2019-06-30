@@ -8,4 +8,26 @@
     margin: 0;
     font-size: 1.3rem;
   }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      background-color: #e78282;
+      margin-bottom: 15px;
+      border-radius: 3px;
+      padding: 5px 10px;
+      width: 95%;
+    }
+
+    li span {
+      display: block;
+      margin: 5px;
+    }
+
+    li .log-url {
+      font-size: 0.9rem;
+    }
+  }
 }

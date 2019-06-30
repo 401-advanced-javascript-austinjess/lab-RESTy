@@ -8,7 +8,20 @@ class History extends React.Component {
     return (
       <section className="history">
         <h3>History</h3>
+        {/* <section className="history-log"> */}
+        <ul className="history-log">
+          {this.props.log.map((req, idx) => {
+            return (
+              <li key={idx}>
+                <span className="log-method">{req[0]}</span>
+                <span className="log-status">{req[1]}</span>
+                <span className="log-url">{req[2]}</span>
+              </li>
+            );
+          })}
+        </ul>
       </section>
+      // </section>
     );
   }
 }
