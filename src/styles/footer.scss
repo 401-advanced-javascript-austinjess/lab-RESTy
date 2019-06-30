@@ -1,0 +1,12 @@
+@import './variables.scss';
+
+footer {
+  height: 15vh;
+  border-top: 1px solid $primary-orange;
+  text-align: center;
+
+  p {
+    margin-top: 3%;
+    color: #c2c2c2;
+  }
+}
