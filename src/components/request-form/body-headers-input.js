@@ -1,9 +1,13 @@
 import React from 'react';
 
-const BodyHeaders = () => {
+const BodyHeaders = (props) => {
+  let disableBody = props.method === 'get' || props.method === 'delete';
+
   return (
     <section className="body-headers-inputs">
-      <textarea name="body" placeholder="raw JSON body" />
+      <textarea name="body" placeholder="raw JSON body"
+        disabled={disableBody}
+        />
       <section className="headers">
         <div className="userpass">
           <p>Authorization</p>

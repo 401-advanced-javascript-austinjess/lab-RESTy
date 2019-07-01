@@ -20,6 +20,7 @@ class Request extends React.Component {
     e.preventDefault();
     let url = e.target.url.value;
     let method = e.target.method.value;
+    this.setState({ url, method });
 
     if (method === 'post' || method === 'put') {
       await this.postRequest(e, method, url);
@@ -42,13 +43,17 @@ class Request extends React.Component {
     return response;
   };
 
+  changeMethod = (method) => {
+    this.setState({ method });
+  }
+
   render() {
     return (
       <section className="resty-request">
         <form onSubmit={this.doRequest}>
           <input name="url" type="text" placeholder="https://example.com/api" />
-          <MethodsInput />
-          <BodyHeaders />
+          <MethodsInput method={this.state.method} onChange={this.changeMethod} />
+          <BodyHeaders {...this.state} />
         </form>
       </section>
     );
