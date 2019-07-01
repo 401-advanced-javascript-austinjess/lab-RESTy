@@ -4,11 +4,12 @@ import '../styles/history.scss';
 
 class History extends React.Component {
   render() {
+    const historyLog = this.props.log.reverse();
     return (
       <section className="history">
         <h3>History</h3>
         <ul className="history-log">
-          {this.props.log.map((req, idx) => {
+          {historyLog.map((req, idx) => {
             return (
               <li key={idx}>
                 <span className="log-method">{req[0]}</span>

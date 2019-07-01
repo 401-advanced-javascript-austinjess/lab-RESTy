@@ -24,8 +24,8 @@ class Resty extends React.Component {
     let filtered = Object.keys(response).filter(
       (key) => key === 'headers' || key === 'data'
     );
-    response = filtered.map((key) => response[key]);
 
+    response = filtered.map((key) => response[key]);
     this.setState((state) => {
       return {
         response,
