@@ -6,15 +6,12 @@ const BodyHeaders = () => {
       <textarea name="body" placeholder="raw JSON body" />
       <section className="headers">
         <div className="userpass">
-          <h6>Authorization</h6>
-          {/* <label>Username</label> */}
-          <div>
-            <input name="username" type="text" placeholder="username" />
-            <input name="password" type="text" placeholder="password" />
-          </div>
+          <p>Authorization</p>
+          <input name="username" type="text" placeholder="username" />
+          <input name="password" type="text" placeholder="password" />
         </div>
         <div className="bearer">
-          <h6>Bearer Token</h6>
+          <p>Bearer Token</p>
           <input name="token" type="text" placeholder="bearer token" />
         </div>
       </section>

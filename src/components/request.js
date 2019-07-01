@@ -1,33 +1,45 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import superagent from 'superagent';
+import axios from 'axios';
 
 import MethodsInput from './request-form/methods-input';
 import BodyHeaders from './request-form/body-headers-input';
-import { handleError as errorHandler } from '../helpers';
 
 import '../styles/request.scss';
 
 class Request extends React.Component {
+  state = {
+    url: '',
+    method: 'get',
+    body: null,
+    username: null,
+    password: null,
+    token: null
+  };
   doRequest = async (e) => {
     let response;
     e.preventDefault();
     let url = e.target.url.value;
     let method = e.target.method.value;
 
-    if (method === 'post') {
+    if (method === 'post' || method === 'put') {
       await this.postRequest(e, method, url);
     }
-
-    response = await superagent(method, url);
+    response = await axios({ method, url });
     this.props.onResponse(response);
   };
 
   postRequest = async (e, method, url) => {
     e.preventDefault();
     let jsonBody = e.target.body.value;
-    let response = await superagent(method, url).send(jsonBody);
-    return response || Error();
+    let response = await axios({ method, url, data: jsonBody });
+    return response;
+  };
+
+  putRequest = async (e, method, url) => {
+    e.preventDefault();
+    let jsonBody = e.target.body.value;
+    let response = await axios({ method, url, data: jsonBody });
+    return response;
   };
 
   render() {

@@ -1,7 +1,7 @@
 const handleHistory = (response) => {
-  let status = response.statusCode;
-  let method = response.req.method.toUpperCase();
-  let url = response.req.url;
+  let status = response.status;
+  let method = response.config.method.toUpperCase();
+  let url = response.config.url;
 
   return [method, status, url];
 };
