@@ -88,36 +88,41 @@
       textarea {
         width: 50%;
         height: 150px;
+        margin-right: 5%;
       }
 
       .headers {
         text-align: left;
-
-        input {
-          height: 25px;
-          margin: 10px;
-          width: 40%;
-        }
+        width: 95%;
 
         .userpass {
-          display: inline-block;
-          div {
-            margin: 0;
+          input {
+            height: 30px;
+            width: 30%;
+            padding: 3px 5px;
+            font-size: 1.1rem;
+          }
+
+          input[name='password'] {
+            margin: 10px 0 0 15px;
           }
         }
 
         .bearer {
-          // display: inline-block;
+          margin-top: 20px;
 
           input {
-            width: 100%;
+            width: 90%;
+            height: 30px;
+            margin: 10px 0 0 0;
+            padding: 3px 5px;
+            font-size: 1.1rem;
           }
         }
 
-        h6 {
+        p {
           display: block;
-          font-size: 1.1rem;
-          margin-left: 20px;
+          font-size: 1rem;
         }
       }
     }

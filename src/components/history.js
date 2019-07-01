@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDom from 'react-dom';
 
 import '../styles/history.scss';
 
@@ -8,7 +7,6 @@ class History extends React.Component {
     return (
       <section className="history">
         <h3>History</h3>
-        {/* <section className="history-log"> */}
         <ul className="history-log">
           {this.props.log.map((req, idx) => {
             return (
@@ -21,7 +19,6 @@ class History extends React.Component {
           })}
         </ul>
       </section>
-      // </section>
     );
   }
 }

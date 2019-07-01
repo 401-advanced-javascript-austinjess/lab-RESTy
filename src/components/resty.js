@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import History from './history';
 import Request from './request';
@@ -23,12 +22,11 @@ class Resty extends React.Component {
     let newLog = helper.handleHistory(response);
 
     let filtered = Object.keys(response).filter(
-      (key) => key === 'header' || key === 'body'
+      (key) => key === 'headers' || key === 'data'
     );
     response = filtered.map((key) => response[key]);
 
     this.setState((state) => {
-      console.log(newLog);
       return {
         response,
         history: [...state.history, newLog]
@@ -52,7 +50,6 @@ class Resty extends React.Component {
   };
 
   render() {
-    console.log('THIS.STATE.HISTORY: ', this.state.history);
     return (
       <main>
         <History log={this.state.history} />
