@@ -53,7 +53,7 @@ class Request extends React.Component {
         <form onSubmit={this.doRequest}>
           <input name="url" type="text" placeholder="https://example.com/api" />
           <MethodsInput method={this.state.method} onChange={this.changeMethod} />
-          <BodyHeaders />
+          <BodyHeaders {...this.state} />
         </form>
       </section>
     );
