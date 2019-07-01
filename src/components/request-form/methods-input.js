@@ -1,25 +1,29 @@
 import React from 'react';
 
 const MethodsInput = (props) => {
+
+  const onChange = e => {
+    props.onChange(e.target.value);
+  }
+
+  const MethodInput = ({ method }) => (
+    <>
+      <input value={method} id={method} name="method" type="radio"
+        checked={props.method === method}
+        onChange={onChange}
+        />
+      <label htmlFor={method}>{method.toUpperCase()}</label>
+    </>
+  )
+
   return (
     <div className="flex">
       <section className="methods">
-        <input value="get" id="get" name="method" type="radio" />
-        <label htmlFor="get" className="list-start">
-          GET
-        </label>
-
-        <input value="post" id="post" name="method" type="radio" />
-        <label htmlFor="post">POST</label>
-
-        <input value="put" id="put" name="method" type="radio" />
-        <label htmlFor="put">PUT</label>
-
-        <input value="patch" id="patch" name="method" type="radio" />
-        <label htmlFor="patch">PATCH</label>
-
-        <input value="delete" id="delete" name="method" type="radio" />
-        <label htmlFor="delete">DELETE</label>
+        <MethodInput method="get" />
+        <MethodInput method="post" />
+        <MethodInput method="put" />
+        <MethodInput method="patch" />
+        <MethodInput method="delete" />
       </section>
       <input type="submit" value="SEND REQUEST" />
     </div>
