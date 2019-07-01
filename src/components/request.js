@@ -43,12 +43,16 @@ class Request extends React.Component {
     return response;
   };
 
+  changeMethod = (method) => {
+    this.setState({ method });
+  }
+
   render() {
     return (
       <section className="resty-request">
         <form onSubmit={this.doRequest}>
           <input name="url" type="text" placeholder="https://example.com/api" />
-          <MethodsInput method={this.state.method} />
+          <MethodsInput method={this.state.method} onChange={this.changeMethod} />
           <BodyHeaders />
         </form>
       </section>
