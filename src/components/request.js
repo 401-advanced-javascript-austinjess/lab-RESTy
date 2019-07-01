@@ -24,19 +24,14 @@ class Request extends React.Component {
     this.setState({ url, method });
 
     if (method === 'post' || method === 'put') {
-      response = await this.bodyRequest(e, method, url);
+      let jsonBody = e.target.body.value;
+      jsonBody = JSON.parse(jsonBody);
+
+      response = await axios({ method, url, data: { name: jsonBody.name } });
     } else {
       response = await axios({ method, url });
     }
     this.props.onResponse(response);
-  };
-
-  bodyRequest = async (e, method, url) => {
-    e.preventDefault();
-    let jsonBody = e.target.body.value;
-    console.log(jsonBody);
-    let response = await axios({ method, url, data: jsonBody });
-    return response;
   };
 
   changeMethod = (method) => {
@@ -44,9 +39,7 @@ class Request extends React.Component {
   };
 
   changeBody = (e) => {
-    console.log(e);
     let jsonBody = e.target.value;
-    console.log(jsonBody);
     this.setState({
       body: jsonBody
     });
