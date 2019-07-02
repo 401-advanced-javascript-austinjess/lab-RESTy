@@ -7,6 +7,6 @@
 @mixin focusInput() {
   &:focus {
     outline: none;
-    border-bottom: 3px solid $primary-orange;
+    border-bottom: 1px solid white;
   }
 }
