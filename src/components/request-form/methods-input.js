@@ -22,11 +22,11 @@ const MethodsInput = (props) => {
   return (
     <div className="flex">
       <section className="methods">
-        <MethodInput method="get" />
-        <MethodInput method="post" />
-        <MethodInput method="put" />
-        <MethodInput method="patch" />
-        <MethodInput method="delete" />
+        <MethodInput method="GET" />
+        <MethodInput method="POST" />
+        <MethodInput method="PUT" />
+        <MethodInput method="PATCH" />
+        <MethodInput method="DELETE" />
       </section>
       <input type="submit" value="SEND REQUEST" />
     </div>

@@ -22,10 +22,15 @@ class Resty extends React.Component {
   }
 
   populateFromHistory = (e) => {
+    // e.stopPropagation();
+    console.log(e);
     let formState = e.target.innerText;
     formState = formState.split('\n');
-    this.setState({ formState });
-    //
+    console.log(formState);
+    this.setState({
+      url: formState[2],
+      method: formState[0]
+    });
   };
 
   handleFormChange = (event) => {
@@ -79,7 +84,10 @@ class Resty extends React.Component {
   render() {
     return (
       <main>
-        <History log={this.state.history} />
+        <History
+          populateForm={this.populateFromHistory}
+          log={this.state.history}
+        />
         <Request
           {...this.state}
           onInputChange={this.handleFormChange}
