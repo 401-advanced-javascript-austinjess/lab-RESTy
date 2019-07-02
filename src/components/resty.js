@@ -8,12 +8,39 @@ import helper from '../helpers';
 class Resty extends React.Component {
   state = {
     response: null,
-    history: []
+    history: [],
+    url: '',
+    method: 'get',
+    body: null,
+    username: null,
+    password: null,
+    token: null
   };
 
   componentDidMount() {
     this.populateHistory();
   }
+
+  populateFromHistory = (e) => {
+    let formState = e.target.innerText;
+    formState = formState.split('\n');
+    this.setState({ formState });
+    //
+  };
+
+  handleFormChange = (event) => {
+    const target = event.target;
+    const value = target.type === 'radio' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  };
+
+  changeMethod = (method) => {
+    this.setState({ method });
+  };
 
   handleResponse = (response) => {
     if (!response) {
@@ -24,12 +51,12 @@ class Resty extends React.Component {
     let filtered = Object.keys(response).filter(
       (key) => key === 'headers' || key === 'data'
     );
-    response = filtered.map((key) => response[key]);
 
+    response = filtered.map((key) => response[key]);
     this.setState((state) => {
       return {
         response,
-        history: [...state.history, newLog]
+        history: [newLog, ...this.state.history]
       };
     });
 
@@ -43,7 +70,7 @@ class Resty extends React.Component {
       try {
         history = JSON.parse(history);
         this.setState({ history });
-      } catch (err) {
+      } catch {
         this.setState({ history: [] });
       }
     }
@@ -53,7 +80,12 @@ class Resty extends React.Component {
     return (
       <main>
         <History log={this.state.history} />
-        <Request onResponse={this.handleResponse} />
+        <Request
+          {...this.state}
+          onInputChange={this.handleFormChange}
+          onMethodChange={this.changeMethod}
+          onResponse={this.handleResponse}
+        />
         <Response response={this.state.response} />
       </main>
     );

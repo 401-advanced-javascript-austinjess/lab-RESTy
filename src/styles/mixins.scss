@@ -1,0 +1,12 @@
+@mixin borderInput() {
+  background: transparent;
+  border-bottom: 1px solid $primary-orange;
+  color: $primary-orange;
+}
+
+@mixin focusInput() {
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid white;
+  }
+}

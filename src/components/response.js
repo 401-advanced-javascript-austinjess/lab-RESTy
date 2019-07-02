@@ -4,7 +4,7 @@ import JsonViewer from 'react-json-view';
 import '../styles/response.scss';
 
 const Response = (props) => {
-  console.log(props.response);
+  // console.log(props.response);
   if (!props.response) {
     return <NoResponseJson />;
   }

@@ -3,6 +3,8 @@
 .history {
   border-radius: 3px;
   width: 95%;
+  overflow-y: auto;
+  grid-row: 1 / -1;
 
   h3 {
     margin: 0;
@@ -14,12 +16,13 @@
     padding: 0;
 
     li {
-      background-color: #e78282;
+      background-color: #52d277;
       margin-bottom: 15px;
       border-radius: 3px;
       padding: 5px 10px;
       width: 95%;
       font-size: 0.9rem;
+      cursor: pointer;
     }
 
     li span {

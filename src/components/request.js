@@ -7,14 +7,15 @@ import BodyHeaders from './request-form/body-headers-input';
 import '../styles/request.scss';
 
 class Request extends React.Component {
-  state = {
-    url: '',
-    method: 'get',
-    body: null,
-    username: null,
-    password: null,
-    token: null
-  };
+  // state = {
+  //   url: '',
+  //   method: 'get',
+  //   body: null,
+  //   username: null,
+  //   password: null,
+  //   token: null
+  // };
+
   doRequest = async (e) => {
     let response;
     e.preventDefault();
@@ -23,37 +24,65 @@ class Request extends React.Component {
     this.setState({ url, method });
 
     if (method === 'post' || method === 'put') {
-      await this.postRequest(e, method, url);
+      let jsonBody = e.target.body.value;
+      jsonBody = JSON.parse(jsonBody);
+
+      response = await axios({ method, url, data: { name: jsonBody.name } });
+    } else {
+      response = await axios({ method, url });
     }
-    response = await axios({ method, url });
     this.props.onResponse(response);
   };
 
-  postRequest = async (e, method, url) => {
-    e.preventDefault();
-    let jsonBody = e.target.body.value;
-    let response = await axios({ method, url, data: jsonBody });
-    return response;
+  // changeMethod = (method) => {
+  //   this.setState({ method });
+  // };
+
+  changeBody = (e) => {
+    let jsonBody = e.target.value;
+    this.setState({
+      body: jsonBody
+    });
   };
 
-  putRequest = async (e, method, url) => {
-    e.preventDefault();
-    let jsonBody = e.target.body.value;
-    let response = await axios({ method, url, data: jsonBody });
-    return response;
+  changeUrl = (e) => {
+    let url = e.target.value;
+    this.setState({ url });
   };
 
-  changeMethod = (method) => {
-    this.setState({ method });
-  }
+  changeUsername = (e) => {
+    let username = e.target.value;
+    this.setState({ username });
+  };
+
+  changePassword = (e) => {
+    let password = e.target.value;
+    this.setState({ password });
+  };
+
+  changeToken = (e) => {
+    let token = e.target.value;
+    this.setState({ token });
+  };
 
   render() {
     return (
       <section className="resty-request">
         <form onSubmit={this.doRequest}>
-          <input name="url" type="text" placeholder="https://example.com/api" />
-          <MethodsInput method={this.state.method} onChange={this.changeMethod} />
-          <BodyHeaders {...this.state} />
+          <input
+            onChange={this.props.onInputChange}
+            name="url"
+            type="text"
+            placeholder="https://example.com/api"
+          />
+          <MethodsInput
+            method={this.props.method}
+            onChange={this.props.onMethodChange}
+          />
+          <BodyHeaders
+            {...this.props}
+            handleChange={this.props.onInputChange}
+          />
         </form>
       </section>
     );
