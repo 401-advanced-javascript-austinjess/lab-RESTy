@@ -9,11 +9,24 @@ class Resty extends React.Component {
   state = {
     response: null,
     history: []
+    // formUrl: '',
+    // formMethod: 'get',
+    // formBody: null,
+    // formUsername: null,
+    // formPassword: null,
+    // formToken: null
   };
 
   componentDidMount() {
     this.populateHistory();
   }
+
+  populateFromHistory = (e) => {
+    let formState = e.target.innerText;
+    formState = formState.split('\n');
+    this.setState({ formState });
+    //
+  };
 
   handleResponse = (response) => {
     if (!response) {
@@ -43,7 +56,7 @@ class Resty extends React.Component {
       try {
         history = JSON.parse(history);
         this.setState({ history });
-      } catch (err) {
+      } catch {
         this.setState({ history: [] });
       }
     }
