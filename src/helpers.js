@@ -8,7 +8,6 @@ const handleHistory = (response) => {
 
 const handleError = (err) => {
   console.log(err);
-  let status = err.status;
 };
 
 module.exports = { handleHistory, handleError };
