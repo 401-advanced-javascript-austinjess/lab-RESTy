@@ -7,14 +7,14 @@ import BodyHeaders from './request-form/body-headers-input';
 import '../styles/request.scss';
 
 class Request extends React.Component {
-  state = {
-    url: '',
-    method: 'get',
-    body: null,
-    username: null,
-    password: null,
-    token: null
-  };
+  // state = {
+  //   url: '',
+  //   method: 'get',
+  //   body: null,
+  //   username: null,
+  //   password: null,
+  //   token: null
+  // };
 
   doRequest = async (e) => {
     let response;
@@ -34,9 +34,9 @@ class Request extends React.Component {
     this.props.onResponse(response);
   };
 
-  changeMethod = (method) => {
-    this.setState({ method });
-  };
+  // changeMethod = (method) => {
+  //   this.setState({ method });
+  // };
 
   changeBody = (e) => {
     let jsonBody = e.target.value;
@@ -70,22 +70,18 @@ class Request extends React.Component {
       <section className="resty-request">
         <form onSubmit={this.doRequest}>
           <input
-            value={this.state.url}
-            onChange={this.changeUrl}
+            onChange={this.props.onInputChange}
             name="url"
             type="text"
             placeholder="https://example.com/api"
           />
           <MethodsInput
-            method={this.state.method}
-            onChange={this.changeMethod}
+            method={this.props.method}
+            onChange={this.props.onMethodChange}
           />
           <BodyHeaders
-            {...this.state}
-            onBodyChange={this.changeBody}
-            onUserChange={this.changeUsername}
-            onPassChange={this.changePassword}
-            onTokenChange={this.changeToken}
+            {...this.props}
+            handleChange={this.props.onInputChange}
           />
         </form>
       </section>

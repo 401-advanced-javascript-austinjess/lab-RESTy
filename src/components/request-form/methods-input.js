@@ -1,20 +1,23 @@
 import React from 'react';
 
 const MethodsInput = (props) => {
-
-  const onChange = e => {
+  const onChange = (e) => {
     props.onChange(e.target.value);
-  }
+  };
 
   const MethodInput = ({ method }) => (
     <>
-      <input value={method} id={method} name="method" type="radio"
+      <input
+        value={method}
+        id={method}
+        name="method"
+        type="radio"
         checked={props.method === method}
         onChange={onChange}
-        />
+      />
       <label htmlFor={method}>{method.toUpperCase()}</label>
     </>
-  )
+  );
 
   return (
     <div className="flex">

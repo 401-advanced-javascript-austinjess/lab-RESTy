@@ -6,7 +6,7 @@ const BodyHeaders = (props) => {
   return (
     <section className="body-headers-inputs">
       <textarea
-        onChange={props.onBodyChange}
+        onChange={props.handleChange}
         name="body"
         placeholder="raw JSON body"
         disabled={disableBody}
@@ -15,13 +15,13 @@ const BodyHeaders = (props) => {
         <div className="userpass">
           <p>Authorization</p>
           <input
-            onChange={props.onUserChange}
+            onChange={props.handleChange}
             name="username"
             type="text"
             placeholder="username"
           />
           <input
-            onChange={props.onPassChange}
+            onChange={props.handleChange}
             name="password"
             type="text"
             placeholder="password"
@@ -30,7 +30,7 @@ const BodyHeaders = (props) => {
         <div className="bearer">
           <p>Bearer Token</p>
           <input
-            onChange={props.onTokenChange}
+            onChange={props.handleChange}
             name="token"
             type="text"
             placeholder="bearer token"

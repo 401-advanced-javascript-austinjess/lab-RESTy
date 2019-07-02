@@ -8,13 +8,13 @@ import helper from '../helpers';
 class Resty extends React.Component {
   state = {
     response: null,
-    history: []
-    // formUrl: '',
-    // formMethod: 'get',
-    // formBody: null,
-    // formUsername: null,
-    // formPassword: null,
-    // formToken: null
+    history: [],
+    url: '',
+    method: 'get',
+    body: null,
+    username: null,
+    password: null,
+    token: null
   };
 
   componentDidMount() {
@@ -26,6 +26,20 @@ class Resty extends React.Component {
     formState = formState.split('\n');
     this.setState({ formState });
     //
+  };
+
+  handleFormChange = (event) => {
+    const target = event.target;
+    const value = target.type === 'radio' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  };
+
+  changeMethod = (method) => {
+    this.setState({ method });
   };
 
   handleResponse = (response) => {
@@ -42,7 +56,7 @@ class Resty extends React.Component {
     this.setState((state) => {
       return {
         response,
-        history: [...state.history, newLog]
+        history: [newLog, ...this.state.history]
       };
     });
 
@@ -66,7 +80,12 @@ class Resty extends React.Component {
     return (
       <main>
         <History log={this.state.history} />
-        <Request onResponse={this.handleResponse} />
+        <Request
+          {...this.state}
+          onInputChange={this.handleFormChange}
+          onMethodChange={this.changeMethod}
+          onResponse={this.handleResponse}
+        />
         <Response response={this.state.response} />
       </main>
     );
