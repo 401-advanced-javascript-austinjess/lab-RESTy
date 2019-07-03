@@ -10,7 +10,11 @@ class History extends React.Component {
         <ul className="history-log">
           {this.props.log.map((req, idx) => {
             return (
-              <li onClick={this.props.populateForm} key={idx}>
+              <li
+                className={req[1] === 200 ? 'success' : 'error'}
+                onClick={this.props.populateForm}
+                key={idx}
+              >
                 <span className="log-method">{req[0]}</span>
                 <span className="log-status">{req[1]}</span>
                 <span className="log-url">{req[2]}</span>

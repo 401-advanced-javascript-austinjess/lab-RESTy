@@ -6,8 +6,4 @@ const handleHistory = (response) => {
   return [method, status, url];
 };
 
-const handleError = (err) => {
-  console.log(err);
-};
-
-module.exports = { handleHistory, handleError };
+module.exports = { handleHistory };
