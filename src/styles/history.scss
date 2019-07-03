@@ -16,8 +16,16 @@
     list-style: none;
     padding: 0;
 
-    li {
+    .success {
       background-color: #52d277;
+    }
+
+    .error {
+      background-color: #ff7373;
+    }
+
+    li {
+      // background-color: #52d277;
       margin-bottom: 15px;
       border-radius: 3px;
       padding: 5px 10px;

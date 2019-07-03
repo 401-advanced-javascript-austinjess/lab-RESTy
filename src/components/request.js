@@ -12,15 +12,25 @@ class Request extends React.Component {
     e.preventDefault();
     let url = e.target.url.value;
     let method = e.target.method.value;
-    this.setState({ url, method });
 
     if (method === 'post' || method === 'put') {
       let jsonBody = e.target.body.value;
       jsonBody = JSON.parse(jsonBody);
 
-      response = await axios({ method, url, data: { name: jsonBody.name } });
+      try {
+        response = await axios({ method, url, data: { name: jsonBody.name } });
+      } catch (err) {
+        response = err;
+      }
     } else {
-      response = await axios({ method, url });
+      try {
+        response = await axios({ method, url });
+      } catch (err) {
+        if (err.response) {
+          console.log(err.response);
+          response = err.response;
+        }
+      }
     }
     this.props.onResponse(response);
   };
