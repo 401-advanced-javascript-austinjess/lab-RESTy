@@ -24,7 +24,7 @@ class Resty extends React.Component {
   populateFromHistory = (e) => {
     // e.stopPropagation();
     console.log(e);
-    let formState = e.target.innerText;
+    let formState = e.currentTarget.innerText;
     formState = formState.split('\n');
     console.log(formState);
     this.setState({
