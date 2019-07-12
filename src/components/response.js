@@ -4,7 +4,6 @@ import JsonViewer from 'react-json-view';
 import '../styles/response.scss';
 
 const Response = (props) => {
-  // console.log(props.response);
   if (!props.response) {
     return <NoResponseJson />;
   }
@@ -41,7 +40,8 @@ const NoResponseJson = () => {
 
 const JsonStyle = {
   width: '65vw',
-  height: '50vh',
+  height: '100%',
+  minHeight: '300px',
   padding: '20px',
   borderRadius: '3px'
 };

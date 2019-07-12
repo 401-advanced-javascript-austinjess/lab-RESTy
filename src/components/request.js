@@ -12,23 +12,52 @@ class Request extends React.Component {
     e.preventDefault();
     let url = e.target.url.value;
     let method = e.target.method.value;
+    let username = e.target.username.value;
+    let password = e.target.password.value;
+    let jsonBody = e.target.body.value;
+    let token = e.target.token.value;
 
-    if (method === 'post' || method === 'put') {
-      let jsonBody = e.target.body.value;
-      jsonBody = JSON.parse(jsonBody);
+    if ((jsonBody.username && jsonBody.password) || (username && password)) {
+      jsonBody = jsonBody ? JSON.parse(jsonBody) : '';
 
       try {
-        response = await axios({ method, url, data: { name: jsonBody.name } });
-      } catch (err) {
-        response = err;
-      }
-    } else {
-      try {
-        response = await axios({ method, url });
+        response = await axios.post(
+          url,
+          {},
+          {
+            auth: {
+              username,
+              password
+            }
+          }
+        );
       } catch (err) {
         if (err.response) {
-          console.log(err.response);
-          response = err.response;
+          response = err;
+        }
+      }
+    } else {
+      if (method === 'post' || method === 'put') {
+        jsonBody = JSON.parse(jsonBody);
+
+        try {
+          response = await axios({
+            method,
+            url,
+            data: { name: jsonBody.name }
+          });
+        } catch (err) {
+          if (err.response) {
+            response = err;
+          }
+        }
+      } else {
+        try {
+          response = await axios({ method, url });
+        } catch (err) {
+          if (err.response) {
+            response = err.response;
+          }
         }
       }
     }

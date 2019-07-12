@@ -2,6 +2,7 @@
   background: transparent;
   border-bottom: 1px solid $primary-orange;
   color: $primary-orange;
+  transition: 1s ease;
 }
 
 @mixin focusInput() {
