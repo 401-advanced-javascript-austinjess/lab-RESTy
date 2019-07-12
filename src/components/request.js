@@ -17,45 +17,47 @@ class Request extends React.Component {
     let jsonBody = e.target.body.value;
     let token = e.target.token.value;
 
-    if (username && password) {
+    if ((jsonBody.username && jsonBody.password) || (username && password)) {
       jsonBody = jsonBody ? JSON.parse(jsonBody) : '';
+
       try {
-        response = await axios({
-          method,
+        response = await axios.post(
           url,
-          data: { name: jsonBody.name },
-          auth: {
-            username,
-            password
-          },
-          headers: {
-            Authorization: `Basic ${token}`
+          {},
+          {
+            auth: {
+              username,
+              password
+            }
           }
-        });
-        console.log(response);
-      } catch (err) {
-        if (err.response) {
-          response = err;
-        }
-      }
-    }
-
-    if (method === 'post' || method === 'put') {
-      jsonBody = JSON.parse(jsonBody);
-
-      try {
-        response = await axios({ method, url, data: { name: jsonBody.name } });
+        );
       } catch (err) {
         if (err.response) {
           response = err;
         }
       }
     } else {
-      try {
-        response = await axios({ method, url });
-      } catch (err) {
-        if (err.response) {
-          response = err.response;
+      if (method === 'post' || method === 'put') {
+        jsonBody = JSON.parse(jsonBody);
+
+        try {
+          response = await axios({
+            method,
+            url,
+            data: { name: jsonBody.name }
+          });
+        } catch (err) {
+          if (err.response) {
+            response = err;
+          }
+        }
+      } else {
+        try {
+          response = await axios({ method, url });
+        } catch (err) {
+          if (err.response) {
+            response = err.response;
+          }
         }
       }
     }
