@@ -7,9 +7,48 @@ import BodyHeaders from './request-form/body-headers-input';
 import '../styles/request.scss';
 
 class Request extends React.Component {
-  doRequest = async (e) => {
+  handleBasicAuth = async (url, username, password) => {
     let response;
+    try {
+      response = await axios.post(
+        url,
+        {},
+        {
+          auth: {
+            username,
+            password
+          }
+        }
+      );
+    } catch (err) {
+      if (err.response) {
+        response = err;
+      }
+    }
+    return response;
+  };
+
+  // DOESNT WORK!!!!!!!!!!!!!
+  // handleBearerAuth = async (url, token) => {
+  //   let response;
+  //   let config = {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`
+  //     }
+  //   };
+  //   try {
+  //     response = await axios.post(url, {}, config);
+  //   } catch (err) {
+  //     if (err.response) {
+  //       response = err;
+  //     }
+  //   }
+  //   return response;
+  // };
+
+  doRequest = async (e) => {
     e.preventDefault();
+    let response;
     let url = e.target.url.value;
     let method = e.target.method.value;
     let username = e.target.username.value;
@@ -17,25 +56,10 @@ class Request extends React.Component {
     let jsonBody = e.target.body.value;
     let token = e.target.token.value;
 
-    if ((jsonBody.username && jsonBody.password) || (username && password)) {
-      jsonBody = jsonBody ? JSON.parse(jsonBody) : '';
-
-      try {
-        response = await axios.post(
-          url,
-          {},
-          {
-            auth: {
-              username,
-              password
-            }
-          }
-        );
-      } catch (err) {
-        if (err.response) {
-          response = err;
-        }
-      }
+    if (username && password) {
+      response = await this.handleBasicAuth(url, username, password);
+    } else if (token) {
+      // response = await this.handleBearerAuth(url, token);
     } else {
       if (method === 'post' || method === 'put') {
         jsonBody = JSON.parse(jsonBody);
@@ -61,6 +85,7 @@ class Request extends React.Component {
         }
       }
     }
+    console.log('RESPONSE', response);
     this.props.onResponse(response);
   };
 
