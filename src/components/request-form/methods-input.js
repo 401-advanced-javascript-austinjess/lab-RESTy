@@ -1,27 +1,29 @@
 import React, { useContext } from 'react';
-import { Context } from '../context';
+import { RestyContext } from '../../context';
 
 const MethodsInput = (props) => {
-  const context = useContext(Context);
+  const context = useContext(RestyContext);
+
   const onChange = (e) => {
-    props.onChange(e.target.value);
+    context.changeMethod(e.target.value);
   };
 
-  // const { method } = context;
-
-  const MethodInput = (method) => (
-    <>
-      <input
-        value={method}
-        id={method}
-        name="method"
-        type="radio"
-        checked={context.method === method}
-        onChange={onChange}
-      />
-      <label htmlFor={method}>{method.toUpperCase()}</label>
-    </>
-  );
+  const MethodInput = (method) => {
+    method = Object.values(method).toString();
+    return (
+      <>
+        <input
+          value={method}
+          id={method}
+          name="method"
+          type="radio"
+          checked={context.method === method}
+          onChange={onChange}
+        />
+        <label htmlFor={method}>{method.toUpperCase()}</label>
+      </>
+    );
+  };
 
   return (
     <div className="flex">

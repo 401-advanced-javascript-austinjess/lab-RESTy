@@ -15,14 +15,35 @@ class RestyProvider extends React.Component {
       body: null,
       username: null,
       password: null,
-      token: null
+      token: null,
+      populateHistory: this.populateHistory,
+      changeMethod: this.changeMethod,
+      populateFormHistory: this.populateFromHistory,
+      handleResponse: this.handleResponse,
+      handleFormChange: this.handleFormChange
     };
+  }
+
+  populateHistory = () => {
+    if (localStorage.hasOwnProperty('history')) {
+      let history = localStorage.getItem('history');
+
+      try {
+        history = JSON.parse(history);
+        this.setState({ history });
+      } catch {
+        this.setState({ history: [] });
+      }
+    }
+  };
+
+  componentDidMount() {
+    this.populateHistory();
   }
 
   populateFromHistory = (e) => {
     let formState = e.currentTarget.innerText;
     formState = formState.split('\n');
-    console.log(formState);
     this.setState({
       url: formState[2],
       method: formState[0]

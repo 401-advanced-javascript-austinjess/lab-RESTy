@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { Context } from '../context';
+import { RestyContext } from '../../context';
 
 const BodyHeaders = (props) => {
-  const context = useContext(Context);
+  const context = useContext(RestyContext);
   let disableBody = context.method === 'get' || context.method === 'delete';
 
   return (

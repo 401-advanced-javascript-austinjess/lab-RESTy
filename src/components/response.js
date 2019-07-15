@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import JsonViewer from 'react-json-view';
-import { Context } from '../context';
+import { RestyContext } from '../context';
 
 import '../styles/response.scss';
 
 const Response = (props) => {
-  const context = useContext(Context);
+  const context = useContext(RestyContext);
   console.log(context);
 
   if (!context.response) {
