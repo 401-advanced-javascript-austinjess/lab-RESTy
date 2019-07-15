@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { RestyContext } from '../../context';
 
 const BodyHeaders = (props) => {
-  let disableBody = props.method === 'get' || props.method === 'delete';
+  const context = useContext(RestyContext);
+  let disableBody = context.method === 'get' || context.method === 'delete';
 
   return (
     <section className="body-headers-inputs">
