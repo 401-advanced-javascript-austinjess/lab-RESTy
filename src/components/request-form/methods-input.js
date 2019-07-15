@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context } from '../context';
 
 const MethodsInput = (props) => {
+  const context = useContext(Context);
   const onChange = (e) => {
     props.onChange(e.target.value);
   };
 
-  const MethodInput = ({ method }) => (
+  // const { method } = context;
+
+  const MethodInput = (method) => (
     <>
       <input
         value={method}
         id={method}
         name="method"
         type="radio"
-        checked={props.method === method}
+        checked={context.method === method}
         onChange={onChange}
       />
       <label htmlFor={method}>{method.toUpperCase()}</label>

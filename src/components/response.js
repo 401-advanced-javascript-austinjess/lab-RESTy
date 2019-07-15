@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import JsonViewer from 'react-json-view';
+import { Context } from '../context';
 
 import '../styles/response.scss';
 
 const Response = (props) => {
-  if (!props.response) {
+  const context = useContext(Context);
+  console.log(context);
+
+  if (!context.response) {
     return <NoResponseJson />;
   }
 
@@ -17,7 +21,7 @@ const Response = (props) => {
         theme={'flat'}
         displayDataTypes={true}
         displayObjectSize={true}
-        src={props.response}
+        src={context.response}
       />
     </section>
   );
