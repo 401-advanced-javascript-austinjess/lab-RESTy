@@ -3,13 +3,16 @@ import React from 'react';
 import History from './history';
 import Request from './request';
 import Response from './response';
+import RestyProvider from '../context';
 
 const Resty = () => {
   return (
     <main>
-      <History />
-      <Request />
-      <Response />
+      <RestyProvider>
+        <History />
+        <Request />
+        <Response />
+      </RestyProvider>
     </main>
   );
 };

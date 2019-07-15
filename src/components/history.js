@@ -18,9 +18,10 @@ const History = (props) => {
     }
   };
 
+  // Only run on initial mount
   useEffect(() => {
     populateHistory();
-  });
+  }, []);
 
   return (
     <section className="history">
